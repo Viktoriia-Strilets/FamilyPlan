@@ -1,0 +1,116 @@
+
+# ==========================================
+# ENVIRONMENT VARIABLES AND SECRETS
+# ==========================================
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Certificates and private keys
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ==========================================
+# PYTHON
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Type checking and linting
+.mypy_cache/
+.pyright/
+.ruff_cache/
+.dmypy.json
+
+# ==========================================
+# FASTAPI / SQLALCHEMY
+# ==========================================
+*.db
+*.sqlite
+*.sqlite3
+
+# Alembic temporary files
+alembic/versions/__pycache__/
+
+# ==========================================
+# NODE.JS / REACT / VITE
+# ==========================================
+node_modules/
+dist/
+build/
+.vite/
+*.tsbuildinfo
+
+# npm / yarn / pnpm logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# ==========================================
+# IDE AND EDITORS
+# ==========================================
+.vscode/
+.idea/
+*.suo
+*.user
+*.swp
+*.swo
+*~
+
+# ==========================================
+# OPERATING SYSTEM
+# ==========================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# DOCKER / LOCAL INFRASTRUCTURE
+# ==========================================
+docker-compose.override.yml
+
+# Local volumes and persistent data
+postgres-data/
+rabbitmq-data/
+redis-data/
+volumes/
+
+# ==========================================
+# LOGS AND TEMPORARY FILES
+# ==========================================
+*.log
+logs/
+tmp/
+temp/
+
+# ==========================================
+# GENERATED FILES
+# ==========================================
+*.bak
+*.tmp
+*.orig

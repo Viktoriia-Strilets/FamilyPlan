@@ -1,0 +1,61 @@
+.auth-page { min-height: 100vh; display: grid; place-items: center; padding: 28px 16px; background: radial-gradient(circle at 15% 15%, #e8ecff 0, transparent 34%), radial-gradient(circle at 90% 85%, #e8f5f1 0, transparent 32%), var(--background-color); }
+.auth-card { width: min(100%, 440px); padding: 34px; border: 1px solid rgba(231,235,245,.95); border-radius: 24px; background: rgba(255,255,255,.94); box-shadow: var(--shadow-medium); }
+.brand-mark { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 18px; border-radius: 17px; color: #fff; background: linear-gradient(145deg, #8193f1, #526ee0); font-size: 31px; }
+.auth-card h1 { margin-bottom: 5px; font-size: 31px; }
+.auth-subtitle { margin-bottom: 23px; font-size: 12px; }
+.auth-tabs, .segmented-tabs { display: flex; padding: 4px; border-radius: 11px; background: #f1f3f9; }
+.auth-tabs { margin-bottom: 20px; }
+.auth-tabs button, .segmented-tabs button { flex: 1; padding: 9px; border: 0; border-radius: 8px; color: var(--text-secondary); background: transparent; font-size: 12px; font-weight: 700; }
+.auth-tabs button.active, .segmented-tabs button.active { color: var(--primary-color); background: #fff; box-shadow: 0 2px 7px rgba(35,49,89,.08); }
+.auth-card .alert { margin-bottom: 13px; }
+.auth-divider, .separator { display: flex; align-items: center; gap: 12px; margin: 19px 0; color: var(--text-muted); font-size: 10px; }
+.auth-divider::before, .auth-divider::after, .separator::before, .separator::after { content: ""; flex: 1; height: 1px; background: var(--border-color); }
+.google-invite-label { margin-bottom: 9px; font-size: 10px; }
+.auth-footnote { margin: 16px 0 0; text-align: center; font-size: 10px; line-height: 1.6; }
+.auth-card .button-primary { margin-top: 3px; }
+.auth-card .form-stack { gap: 13px; }
+.shopping-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 16px 19px; border: 1px solid var(--border-color); border-radius: 15px; background: #fff; }
+.shopping-summary div { display: flex; flex-direction: column; gap: 3px; }
+.shopping-summary span { color: var(--text-muted); font-size: 10px; font-weight: 650; }
+.shopping-summary strong { color: var(--text-primary); font-size: 18px; }
+.list-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 13px; }
+.segmented-tabs { width: fit-content; min-width: 190px; }
+.segmented-tabs button { padding: 8px 14px; }
+.list-toolbar select { width: auto; min-width: 140px; padding: 8px 10px; font-size: 11px; }
+.shopping-items { display: flex; flex-direction: column; }
+.shopping-item { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 15px 0; border-bottom: 1px solid #f0f2f7; }
+.shopping-item:last-child { border-bottom: 0; }
+.shopping-item-main { display: flex; align-items: center; gap: 12px; min-width: 170px; flex: 1; }
+.item-check { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #e4e8f2; border-radius: 10px; color: var(--primary-color); background: #f8f9ff; font-size: 20px; }
+.shopping-item.purchased .item-check { color: var(--success-color); background: var(--success-soft); border-color: #d5eee3; }
+.shopping-item-main strong { color: var(--text-primary); font-size: 13px; }
+.shopping-item.purchased .shopping-item-main strong { color: var(--text-muted); text-decoration: line-through; }
+.item-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; color: var(--text-muted); font-size: 10px; }
+.shopping-item-price { display: flex; flex-direction: column; min-width: 85px; }
+.shopping-item-price strong { font-size: 13px; }
+.shopping-item-price small { color: var(--text-muted); font-size: 9px; }
+.shopping-item-actions { display: flex; align-items: center; gap: 6px; }
+.actual-price-input { width: 95px; padding: 7px 8px; font-size: 10px; }
+.recommendation-list { display: flex; flex-direction: column; gap: 13px; }
+.recommendation-item { display: flex; gap: 10px; }
+.recommendation-dot { display: grid; place-items: center; flex: 0 0 auto; width: 27px; height: 27px; border-radius: 9px; color: var(--primary-color); background: var(--primary-soft); }
+.recommendation-item strong { font-size: 12px; }
+.recommendation-item p { margin: 3px 0 5px; font-size: 11px; }
+.reminder-stack { display: flex; flex-direction: column; gap: 8px; }
+.forecast-highlight { padding: 18px; border-radius: 14px; background: linear-gradient(135deg, #f0f2ff, #f8f9ff); }
+.forecast-highlight strong { color: var(--primary-color); font-size: 27px; letter-spacing: -.5px; }
+.forecast-highlight p { margin: 7px 0 0; font-size: 11px; }
+.period-picker { max-width: 200px; margin-bottom: 16px; }
+.category-chart { display: flex; flex-direction: column; gap: 14px; }
+.category-bar-label { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 6px; font-size: 10px; }
+.category-bar-label strong { color: var(--text-primary); }
+.category-bar-label span { color: var(--text-muted); text-align: right; }
+.report-list { display: flex; flex-direction: column; }
+.report-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f0f2f7; }
+.report-row:last-child { border-bottom: 0; }
+.report-row > div { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.report-row > div strong { font-size: 12px; }
+.report-row > div span { overflow: hidden; color: var(--text-muted); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.report-row > strong { font-size: 12px; }
+@media (max-width: 760px) { .shopping-item { align-items: flex-start; flex-wrap: wrap; } .shopping-item-actions { width: 100%; justify-content: flex-end; } .shopping-summary { gap: 8px; padding: 13px; } .shopping-summary strong { font-size: 14px; } }
+@media (max-width: 460px) { .auth-card { padding: 25px 20px; } .shopping-summary { grid-template-columns: 1fr 1fr; } .shopping-summary div:last-child { grid-column: 1 / -1; } .list-toolbar { align-items: stretch; flex-direction: column; } .segmented-tabs { width: 100%; } .list-toolbar select { width: 100%; } }

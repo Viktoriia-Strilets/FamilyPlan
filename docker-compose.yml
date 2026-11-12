@@ -1,0 +1,182 @@
+version: '3.8'
+
+services:
+  # --- БАЗИ ДАНИХ (Database per Service) ---
+  user-db:
+    image: postgres:15-alpine
+    container_name: user_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: user_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - user_data:/var/lib/postgresql/data
+    networks:
+      - family-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d user_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  budget-db:
+    image: postgres:15-alpine
+    container_name: budget_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: budget_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - budget_data:/var/lib/postgresql/data
+    networks:
+      - family-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d budget_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  shopping-db:
+    image: postgres:15-alpine
+    container_name: shopping_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: shopping_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - shopping_data:/var/lib/postgresql/data
+    networks:
+      - family-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d shopping_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  analytics-db:
+    image: postgres:15-alpine
+    container_name: analytics_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: analytics_db
+    ports:
+      - "5435:5432"
+    volumes:
+      - analytics_data:/var/lib/postgresql/data
+    networks:
+      - family-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d analytics_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # --- МЕСЕНДЖ-БРОКЕР ---
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - family-net
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # --- ОСНОВНІ МІКРОСЕРВІСИ (FastAPI) ---
+  user-service:
+    build: ./backend/user-service
+    container_name: user_service
+    volumes:
+      - ./backend/user-service:/app
+    ports:
+      - "8001:8000"
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:password@user-db:5432/user_db
+    env_file:
+      - .env
+    depends_on:
+      user-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - family-net
+
+  budget-service:
+    build: ./backend/budget-service
+    container_name: budget_service
+    volumes:
+      - ./backend/budget-service:/app
+    ports:
+      - "8002:8000"
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:password@budget-db:5432/budget_db
+    env_file:
+      - .env
+    depends_on:
+      budget-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - family-net
+
+  shopping-service:
+    build: ./backend/shopping-service
+    container_name: shopping_service
+    volumes:
+      - ./backend/shopping-service:/app
+    ports:
+      - "8003:8000"
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:password@shopping-db:5432/shopping_db
+      - BUDGET_SERVICE_URL=http://budget-service:8000
+    env_file:
+      - .env
+    depends_on:
+      shopping-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_started
+    networks:
+      - family-net
+
+  analytics-service:
+    build: ./backend/analytics-service
+    container_name: analytics_service
+    volumes:
+      - ./backend/analytics-service:/app
+    ports:
+      - "8004:8000"
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:password@analytics-db:5432/analytics_db
+    env_file:
+      - .env
+    depends_on:
+      analytics-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_started
+    networks:
+      - family-net
+
+volumes:
+  user_data:
+  budget_data:
+  shopping_data:
+  analytics_data:
+
+networks:
+  family-net:
+    driver: bridge

@@ -1,0 +1,111 @@
+.profile-menu { position: absolute; z-index: 50; top: calc(100% + 10px); right: 0; width: min(390px, calc(100vw - 28px)); max-height: min(78vh, 680px); overflow-y: auto; padding: 17px; border: 1px solid var(--border-color); border-radius: 17px; background: #fff; box-shadow: var(--shadow-medium); animation: menu-in .16s ease-out; }
+@keyframes menu-in { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+.profile-menu-head { display: flex; align-items: center; gap: 11px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
+.profile-menu-head > div { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.profile-menu-head strong { color: var(--text-primary); font-size: 13px; }
+.profile-menu-head span:not(.avatar) { color: var(--text-muted); font-size: 10px; }
+.avatar-large { width: 42px; height: 42px; border-radius: 14px; }
+.close-menu { border: 0; font-size: 21px; }
+.profile-menu-section { padding: 15px 0; border-bottom: 1px solid var(--border-color); }
+.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 11px; }
+.section-heading > strong { font-size: 12px; }
+.members-list { display: flex; flex-direction: column; gap: 9px; }
+.member-row { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.member-avatar { display: grid; place-items: center; flex: 0 0 auto; width: 29px; height: 29px; border-radius: 9px; color: #697bd4; background: #eff1ff; font-size: 10px; font-weight: 800; }
+.member-info { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.member-info strong { overflow: hidden; color: var(--text-primary); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.member-info span { overflow: hidden; color: var(--text-muted); font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.member-actions { display: flex; align-items: center; gap: 4px; }
+.member-actions select { width: auto; max-width: 100px; padding: 5px 6px; font-size: 9px; }
+.member-actions .icon-button { width: 25px; height: 25px; }
+.compact-form { gap: 10px; margin-top: 12px; }
+.compact-form label { gap: 5px; font-size: 10px; }
+.compact-form input { padding: 8px 9px; font-size: 11px; }
+.button-small { font-size: 10px; }
+.add-member-toggle { margin-top: 12px; }
+.invite-code { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 13px; padding: 10px; border-radius: 10px; background: #f6f7fc; }
+.invite-code span { width: 100%; color: var(--text-muted); font-size: 9px; }
+.invite-code strong { flex: 1; color: var(--text-primary); font-size: 12px; letter-spacing: 1px; }
+.logout-button { display: flex; width: 100%; align-items: center; justify-content: space-between; margin-top: 14px; padding: 10px 11px; border: 0; border-radius: 9px; color: var(--danger-color); background: var(--danger-soft); font-size: 11px; font-weight: 750; }
+.logout-button:hover { background: #ffe5e8; }
+.inline-message { margin-top: 10px; padding: 8px 10px; border-radius: 8px; color: var(--text-secondary); background: var(--secondary-background); font-size: 10px; }
+@media (max-width: 680px) { .profile-menu { position: fixed; top: 72px; right: 12px; } }
+
+.danger-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e8e8e8;
+}
+
+.danger-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.danger-action-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #f0dada;
+  border-radius: 10px;
+  background: #fffafa;
+}
+
+.danger-action-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: #feecec;
+  color: #dc3545;
+  font-size: 20px;
+}
+
+.danger-action-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.danger-action-info strong {
+  font-size: 13px;
+  color: #333;
+}
+
+.danger-action-info span {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #888;
+}
+
+.danger-action-button {
+  flex-shrink: 0;
+  padding: 7px 10px;
+  border: 1px solid #e6baba;
+  border-radius: 7px;
+  background: #fff;
+  color: #d93636;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.danger-action-button:hover:not(:disabled) {
+  background: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+
+.danger-action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
